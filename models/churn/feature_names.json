@@ -1,0 +1,13 @@
+[
+  "Recency",
+  "Frequency",
+  "Monetary",
+  "AOV",
+  "TotalQuantity",
+  "BasketSize",
+  "UniqueProducts",
+  "ProductDiversity",
+  "TenureDays",
+  "LifespanDays",
+  "PurchaseVelocity"
+]

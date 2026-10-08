@@ -1,0 +1,39 @@
+{
+  "n_clusters": 4,
+  "random_state": 42,
+  "cluster_names": {
+    "3": "Champions",
+    "2": "Loyal Customers",
+    "0": "Potential Loyalists",
+    "1": "At Risk / Hibernating"
+  },
+  "evaluation": {
+    "k_values": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "inertias": [
+      6477.090542397297,
+      4861.456477405176,
+      3932.533141665616,
+      3290.4621323418996,
+      2850.0142729138265,
+      2547.5614234535356
+    ],
+    "silhouette_scores": [
+      0.432931606821011,
+      0.3375918930872377,
+      0.33779709811131753,
+      0.3166494306809589,
+      0.31365183981027084,
+      0.3090298194445786
+    ],
+    "recommended_k_silhouette": 2
+  },
+  "total_customers": 4334,
+  "total_revenue": 8743913.64
+}

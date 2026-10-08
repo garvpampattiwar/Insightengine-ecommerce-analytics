@@ -1,0 +1,227 @@
+{
+  "dataset_transactions": 391283,
+  "total_revenue": 8743913.64,
+  "unique_customers": 4334,
+  "unique_products": 3660,
+  "segmentation_profiles": [
+    {
+      "Cluster": 0,
+      "SegmentName": "Potential Loyalists",
+      "CustomerCount": 840,
+      "AvgRecency": 18.5,
+      "MedianRecency": 17.0,
+      "AvgFrequency": 2.1,
+      "MedianFrequency": 2.0,
+      "AvgMonetary": 531.77,
+      "MedianMonetary": 459.18,
+      "TotalRevenue": 446683.58,
+      "CustomerPct": 19.38,
+      "RevenuePct": 5.11,
+      "RecommendedAction": "Nurturing email flows, limited-time trial discounts on related categories, low-friction checkout reminders."
+    },
+    {
+      "Cluster": 1,
+      "SegmentName": "At Risk / Hibernating",
+      "CustomerCount": 1636,
+      "AvgRecency": 183.1,
+      "MedianRecency": 177.0,
+      "AvgFrequency": 1.3,
+      "MedianFrequency": 1.0,
+      "AvgMonetary": 351.64,
+      "MedianMonetary": 299.67999999999995,
+      "TotalRevenue": 575280.61,
+      "CustomerPct": 37.75,
+      "RevenuePct": 6.58,
+      "RecommendedAction": "Automated re-engagement discount, brand reminder emails, survey reason for drop-off before sunsetting."
+    },
+    {
+      "Cluster": 2,
+      "SegmentName": "Loyal Customers",
+      "CustomerCount": 1174,
+      "AvgRecency": 67.0,
+      "MedianRecency": 52.0,
+      "AvgFrequency": 4.2,
+      "MedianFrequency": 4.0,
+      "AvgMonetary": 1809.1,
+      "MedianMonetary": 1369.24,
+      "TotalRevenue": 2123880.77,
+      "CustomerPct": 27.09,
+      "RevenuePct": 24.29,
+      "RecommendedAction": "Cross-sell high-affinity accessories, loyalty point accelerators, premium tier incentives to increase basket size."
+    },
+    {
+      "Cluster": 3,
+      "SegmentName": "Champions",
+      "CustomerCount": 684,
+      "AvgRecency": 11.7,
+      "MedianRecency": 8.0,
+      "AvgFrequency": 14.0,
+      "MedianFrequency": 10.0,
+      "AvgMonetary": 8184.31,
+      "MedianMonetary": 3719.1099999999997,
+      "TotalRevenue": 5598068.68,
+      "CustomerPct": 15.78,
+      "RevenuePct": 64.02,
+      "RecommendedAction": "VIP loyalty programs, early access to new collections, personalized white-glove service, referral incentives."
+    }
+  ],
+  "churn_metrics": {
+    "logistic_regression": {
+      "accuracy": 0.671,
+      "precision": 0.6081,
+      "recall": 0.6602,
+      "f1": 0.6331,
+      "roc_auc": 0.7272,
+      "confusion_matrix": [
+        [
+          326,
+          154
+        ],
+        [
+          123,
+          239
+        ]
+      ],
+      "best_params": {
+        "C": 1.0,
+        "solver": "lbfgs"
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.6793,
+      "precision": 0.6211,
+      "recall": 0.6519,
+      "f1": 0.6361,
+      "roc_auc": 0.7362,
+      "confusion_matrix": [
+        [
+          336,
+          144
+        ],
+        [
+          126,
+          236
+        ]
+      ],
+      "best_params": {
+        "max_depth": 4,
+        "min_samples_split": 2,
+        "n_estimators": 50
+      }
+    }
+  },
+  "churn_risk_counts": {
+    "Medium Risk": 1462,
+    "Low Risk": 1198,
+    "High Risk": 708
+  },
+  "best_churn_model": "random_forest",
+  "recommender_coverage": {
+    "users_evaluated": 300,
+    "unique_items_recommended": 963,
+    "active_catalog_items": 3182,
+    "catalog_coverage_pct": 30.26
+  },
+  "ab_test": {
+    "difference_in_means": 30.0,
+    "percentage_lift": 7.45,
+    "t_p_value": 0.050447304650717395,
+    "mwu_p_value": 0.012047625292780266,
+    "cohens_d": 0.0715,
+    "is_significant": false
+  },
+  "executive_insights": {
+    "kpis": {
+      "total_revenue": 8743913.64,
+      "total_customers": 4334,
+      "total_orders": 18405,
+      "aov": 475.08,
+      "top_country": "United Kingdom",
+      "top_country_pct": 82.85,
+      "pareto_share_pct": 74.59
+    },
+    "segment_insights": {
+      "top_revenue_segment": "Champions",
+      "top_revenue_segment_share": 64.02,
+      "segment_breakdown": [
+        {
+          "SegmentName": "At Risk / Hibernating",
+          "Count": 1636,
+          "Revenue": 575280.61,
+          "RevPct": 6.58
+        },
+        {
+          "SegmentName": "Champions",
+          "Count": 684,
+          "Revenue": 5598068.68,
+          "RevPct": 64.02
+        },
+        {
+          "SegmentName": "Loyal Customers",
+          "Count": 1174,
+          "Revenue": 2123880.77,
+          "RevPct": 24.29
+        },
+        {
+          "SegmentName": "Potential Loyalists",
+          "Count": 840,
+          "Revenue": 446683.58,
+          "RevPct": 5.11
+        }
+      ]
+    },
+    "churn_insights": {
+      "high_risk_customer_pct": 21.02,
+      "high_risk_revenue_at_risk": 259429.41,
+      "risk_breakdown": [
+        {
+          "RiskTier": "Low Risk",
+          "Count": 1198,
+          "RevenueAtRisk": 4252443.26,
+          "CustomerPct": 35.57
+        },
+        {
+          "RiskTier": "Medium Risk",
+          "Count": 1462,
+          "RevenueAtRisk": 851697.94,
+          "CustomerPct": 43.41
+        },
+        {
+          "RiskTier": "High Risk",
+          "Count": 708,
+          "RevenueAtRisk": 259429.41,
+          "CustomerPct": 21.02
+        }
+      ]
+    },
+    "narrative": {
+      "what_is_happening": "The business generated $8,743,913.64 across 18,405 orders and 4,334 active customers with an Average Order Value of $475.08. United Kingdom dominates transaction volume, contributing 82.85% ($7,244,330.32) of all sales.",
+      "why_it_matters": "Customer revenue demonstrates high concentration: the top 20% of customers generate 74.59% of total revenue. While this reflects a strong core of VIP accounts, excessive concentration in a single geography (United Kingdom) leaves the store vulnerable to regional supply disruptions or local macroeconomic shifts.",
+      "which_customers_matter_most": "Customer segmentation identifies Champions and Loyal Customers as the vital engine of revenue. The 'Champions' segment alone accounts for 64.02% of revenue. Retaining these accounts yields an order of magnitude higher ROI than acquiring cold leads.",
+      "which_customers_are_at_risk": "Machine learning churn scoring classifies 21.02% of evaluated accounts as High Risk, representing $259,429.41 in historical revenue exposed to defection. ",
+      "what_products_drive_performance": "Top revenue driver is 'PAPER CRAFT , LITTLE BIRDIE' generating $168,469.60. Deploying collaborative filtering recommendations provides continuous basket-building cross-sells across all tiers.",
+      "strategic_recommendations": [
+        {
+          "pillar": "VIP Retention & Loyalty",
+          "action": "Implement a tiered loyalty VIP program for Champions with concierge customer service and exclusive early releases.",
+          "target_metric": "+12% Repeat Purchase Frequency among top 20% accounts"
+        },
+        {
+          "pillar": "Automated Churn Win-Back",
+          "action": "Trigger automated re-engagement workflows with dynamic personalized vouchers when customer inactivity reaches 45 days.",
+          "target_metric": "Reduce High-Risk customer defection by 15-20%"
+        },
+        {
+          "pillar": "AI-Powered Cross-Selling",
+          "action": "Embed Collaborative Filtering recommendations on checkout and post-purchase email confirmations.",
+          "target_metric": "Increase Average Order Value (AOV) by 7-10%"
+        },
+        {
+          "pillar": "Geographic Diversification",
+          "action": "Expand targeted acquisition in high-AOV European markets (Germany, France, Ireland) to decrease single-region dependency.",
+          "target_metric": "Grow non-domestic revenue share from ~10% to 20% over 12 months"
+        }
+      ]
+    }
+  }
+}

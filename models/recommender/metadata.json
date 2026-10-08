@@ -1,0 +1,8 @@
+{
+  "num_products": 3182,
+  "num_customers": 4333,
+  "top_popular_count": 20,
+  "model_size_mb": 1.95,
+  "compression": "joblib_zlib_level_3",
+  "architecture": "item_to_item_nearest_neighbor_graph"
+}

@@ -1,0 +1,34 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets
+.env
+.env.local
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
+
+# Pytest & Testing Cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & Temporary Files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Keep data directory structure intact
+# Raw data xlsx can be downloaded via script; keep raw directory gitkeep
+data/raw/*.zip
+data/interim/*.csv

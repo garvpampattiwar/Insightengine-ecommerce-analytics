@@ -1,0 +1,32 @@
+{
+  "initial_rows": 541909,
+  "initial_columns": 9,
+  "initial_missing": {
+    "InvoiceNo": 0,
+    "StockCode": 0,
+    "Description": 1454,
+    "Quantity": 0,
+    "InvoiceDate": 0,
+    "UnitPrice": 0,
+    "CustomerID": 135080,
+    "Country": 0,
+    "InvoiceNo_str": 0
+  },
+  "duplicates_removed": 5268,
+  "cancellations_separated": 9251,
+  "invalid_quantity_removed": 1336,
+  "invalid_price_removed": 2512,
+  "missing_customer_id_removed": 132186,
+  "admin_codes_removed": 1409,
+  "final_rows": 391283,
+  "final_columns": 15,
+  "retention_rate_pct": 72.2,
+  "unique_customers": 4334,
+  "unique_products": 3660,
+  "unique_orders": 18405,
+  "total_revenue": 8743913.64,
+  "date_range": {
+    "min": "2010-12-01 08:26:00",
+    "max": "2011-12-09 12:50:00"
+  }
+}

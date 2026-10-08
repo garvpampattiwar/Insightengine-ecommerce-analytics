@@ -1,0 +1,5 @@
+Cluster,SegmentName,CustomerCount,AvgRecency,MedianRecency,AvgFrequency,MedianFrequency,AvgMonetary,MedianMonetary,TotalRevenue,CustomerPct,RevenuePct,RecommendedAction
+0,Potential Loyalists,840,18.5,17.0,2.1,2.0,531.77,459.18,446683.58,19.38,5.11,"Nurturing email flows, limited-time trial discounts on related categories, low-friction checkout reminders."
+1,At Risk / Hibernating,1636,183.1,177.0,1.3,1.0,351.64,299.67999999999995,575280.61,37.75,6.58,"Automated re-engagement discount, brand reminder emails, survey reason for drop-off before sunsetting."
+2,Loyal Customers,1174,67.0,52.0,4.2,4.0,1809.1,1369.24,2123880.77,27.09,24.29,"Cross-sell high-affinity accessories, loyalty point accelerators, premium tier incentives to increase basket size."
+3,Champions,684,11.7,8.0,14.0,10.0,8184.31,3719.1099999999997,5598068.68,15.78,64.02,"VIP loyalty programs, early access to new collections, personalized white-glove service, referral incentives."
