@@ -14,6 +14,11 @@ from .statistics import (
     simulate_marketing_ab_test,
 )
 from .business_insights import generate_executive_insights
+from .precompute import (
+    precompute_dashboard_aggregates,
+    load_precomputed_aggregates,
+    get_precomputed_path,
+)
 
 __all__ = [
     "get_summary_kpis",
@@ -24,4 +29,7 @@ __all__ = [
     "run_ab_test_analysis",
     "simulate_marketing_ab_test",
     "generate_executive_insights",
+    "precompute_dashboard_aggregates",
+    "load_precomputed_aggregates",
+    "get_precomputed_path",
 ]

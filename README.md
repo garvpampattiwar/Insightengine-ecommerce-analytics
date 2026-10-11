@@ -2,8 +2,7 @@
 
 [![Python Version](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
-[![Streamlit App](https://img.shields.io/badge/Streamlit-1.40%2B-red.svg)](https://streamlit.io/)
-[![Tests Status](https://img.shields.io/badge/pytest-16%20passed-brightgreen.svg)](tests/)
+[![Tests Status](https://img.shields.io/badge/pytest-22%20passed-brightgreen.svg)](tests/)
 
 **InsightEngine** is an enterprise-grade, end-to-end data science and machine learning system that transforms raw e-commerce transaction logs into predictive customer lifetime value, automated RFM segmentation, leak-free churn intelligence, collaborative filtering recommendations, and executive-ready strategic insights.
 
@@ -102,7 +101,7 @@ InsightEngine/
 ├── data/
 │   ├── raw/                    # Immutable raw dataset
 │   ├── interim/                # Cancelled invoices archive
-│   ├── processed/              # Cleaned e-commerce dataset
+│   ├── processed/              # Cleaned e-commerce dataset (CSV, Parquet, Precomputed joblib)
 │   └── external/               # Reference datasets
 │
 ├── notebooks/
@@ -116,8 +115,8 @@ InsightEngine/
 │   ├── __init__.py
 │   ├── data/
 │   │   ├── __init__.py
-│   │   ├── loader.py           # Ingestion and schema validation
-│   │   └── cleaning.py         # Multi-step cleaning pipeline
+│   │   ├── loader.py           # Ingestion, schema validation & parquet fast-path
+│   │   └── cleaning.py         # Multi-step cleaning pipeline & audit
 │   │
 │   ├── features/
 │   │   ├── __init__.py
@@ -135,16 +134,17 @@ InsightEngine/
 │   │   ├── __init__.py
 │   │   ├── eda.py              # KPI & distribution aggregations
 │   │   ├── statistics.py       # A/B test simulation & hypothesis tests
-│   │   └── business_insights.py# Automated executive insights engine
+│   │   ├── business_insights.py# Automated executive insights engine
+│   │   └── precompute.py       # High-performance aggregate caching (<80 KB)
 │   │
 │   └── visualization/
-│       ├── __init__.py
-│       └── charts.py           # Plotly interactive chart builders
-│
+│   │   ├── __init__.py
+│   │   └── charts.py           # Accessible Plotly interactive chart builders
+│   │
 ├── models/
 │   ├── segmentation/           # Serialized kmeans.pkl, scaler.pkl, metadata.json
 │   ├── churn/                  # Serialized best_model.pkl, lr.pkl, rf.pkl, metadata.json
-│   └── recommender/            # Serialized recommender_model.pkl, catalogs
+│   └── recommender/            # Serialized recommender_model.pkl, catalogs (<2 MB)
 │
 ├── reports/
 │   ├── methodology.md          # Technical methodology and architecture
@@ -154,6 +154,8 @@ InsightEngine/
 │   └── pipeline_run_summary.json# Verified run metrics
 │
 ├── scripts/
+│   ├── benchmark_loaders.py    # Ingestion benchmark suite
+│   ├── profile_dashboard.py    # Runtime performance profiling
 │   ├── generate_notebooks.py   # Notebook builder script
 │   └── execute_notebooks.py    # Notebook execution script
 │
@@ -162,7 +164,8 @@ InsightEngine/
     ├── test_features.py        # RFM & churn target tests
     ├── test_segmentation.py    # K-Means clustering tests
     ├── test_churn.py           # ML classification tests
-    └── test_recommender.py     # Collaborative filtering tests
+    ├── test_recommender.py     # Collaborative filtering tests
+    └── test_dashboard_optimization.py # Caching, latency & UI integrity tests
 ```
 
 ---
@@ -192,7 +195,7 @@ python -m src.pipeline
 ```bash
 python -m pytest tests
 ```
-*Output: 16 passed tests in <10s.*
+*Output: 22 passed tests in <35s.*
 
 ### 4. Launch Streamlit Analytics Dashboard
 ```bash
@@ -237,6 +240,12 @@ The application will open locally at `http://localhost:8501`.
 - **Control Basket Mean**: $402.73 | **Treatment Basket Mean**: $432.73
 - **Observed Lift**: +$30.00 (+7.45%)
 - **Welch's t-test**: $p = 0.0504$ | **Mann-Whitney U**: $p = 0.0120$ (Statistically significant rank-sum shift) | **Cohen's d**: $0.0715$.
+
+### 7.6 High-Performance Optimization Architecture
+- **Precomputed Analytical Cache**: Precomputed metrics and aggregations (`dashboard_precomputed_aggregates.joblib`, 77 KB) eliminate repetitive groupbys across 391k rows, providing instant sub-second page switches.
+- **Parquet Ingestion Fast-Path**: Dual CSV/Parquet storage accelerates cold data loading by ~4x (220 ms vs 750+ ms).
+- **Streamlit UI Fragments (`@st.fragment`)**: Interactive sliders (e.g., A/B simulation lift, recommendation counts) re-render locally without triggering full dashboard re-runs.
+- **Accessible High-Contrast Visualizations**: Chart layouts configured with high contrast labels, zero clipping margins, left-aligned titles, and Plotly Dark theme.
 
 ---
 

@@ -4,7 +4,7 @@ Performs rigorous hypothesis testing (t-test, Mann-Whitney U, Cohen's d, Confide
 with plain-English business interpretation.
 """
 
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple, Optional
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -132,10 +132,11 @@ def run_ab_test_analysis(
 
 
 def simulate_marketing_ab_test(
-    cleaned_df: pd.DataFrame,
+    cleaned_df: Optional[pd.DataFrame] = None,
     treatment_lift_pct: float = 7.5,
     sample_size_per_group: int = 1500,
     random_state: int = 42,
+    order_values: Optional[np.ndarray] = None,
 ) -> Dict[str, Any]:
     """
     Simulate a randomized controlled A/B test on order basket sizes:
@@ -143,7 +144,12 @@ def simulate_marketing_ab_test(
     - Treatment: Simulated personalized recommendation engine introducing uplift.
     """
     rng = np.random.RandomState(random_state)
-    order_values = cleaned_df.groupby("InvoiceNo")["Revenue"].sum().values
+    if order_values is None:
+        if cleaned_df is None:
+            raise ValueError("Either cleaned_df or order_values must be provided.")
+        order_values = cleaned_df.groupby("InvoiceNo")["Revenue"].sum().values
+    else:
+        order_values = np.asarray(order_values)
 
     # Filter extreme outliers for realistic experiment modeling
     q99 = np.percentile(order_values, 99)

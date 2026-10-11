@@ -78,9 +78,9 @@ def generate_executive_insights(
     # Executive narrative sections
     executive_narrative = {
         "what_is_happening": (
-            f"The business generated ${total_rev:,.2f} across {total_orders:,} orders and {total_customers:,} active customers "
-            f"with an Average Order Value of ${aov:.2f}. "
-            f"{top_country} dominates transaction volume, contributing {top_country_pct}% (${top_country_rev:,.2f}) of all sales."
+            f"The business generated \\${total_rev:,.2f} across {total_orders:,} orders and {total_customers:,} active customers "
+            f"with an Average Order Value of \\${aov:.2f}. "
+            f"{top_country} dominates transaction volume, contributing {top_country_pct}% (\\${top_country_rev:,.2f}) of all sales."
         ),
         "why_it_matters": (
             f"Customer revenue demonstrates high concentration: the top 20% of customers generate {pareto_share_pct}% of total revenue. "
@@ -94,11 +94,11 @@ def generate_executive_insights(
         ),
         "which_customers_are_at_risk": (
             (f"Machine learning churn scoring classifies {churn_insights.get('high_risk_customer_pct')}% of evaluated accounts as High Risk, "
-             f"representing ${churn_insights.get('high_risk_revenue_at_risk'):,.2f} in historical revenue exposed to defection. "
+             f"representing \\${churn_insights.get('high_risk_revenue_at_risk'):,.2f} in historical revenue exposed to defection. "
              if churn_insights else "Customers exhibiting steep drop-offs in 30-day velocity and recency over 60 days require immediate intervention.")
         ),
         "what_products_drive_performance": (
-            f"Top revenue driver is '{top_product_name}' generating ${top_product_rev:,.2f}. "
+            f"Top revenue driver is '{top_product_name}' generating \\${top_product_rev:,.2f}. "
             f"Deploying collaborative filtering recommendations provides continuous basket-building cross-sells across all tiers."
         ),
         "strategic_recommendations": [

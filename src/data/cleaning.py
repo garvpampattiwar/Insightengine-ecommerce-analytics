@@ -145,6 +145,11 @@ def clean_online_retail(
         processed_dir.mkdir(parents=True, exist_ok=True)
         csv_path = processed_dir / "cleaned_ecommerce.csv"
         df_clean.to_csv(csv_path, index=False)
+        try:
+            parquet_path = processed_dir / "cleaned_ecommerce.parquet"
+            df_clean.to_parquet(parquet_path, index=False)
+        except Exception:
+            pass
         
         # Save audit report as JSON
         with open(processed_dir / "cleaning_audit.json", "w") as f:

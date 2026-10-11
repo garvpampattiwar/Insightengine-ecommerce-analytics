@@ -37,14 +37,19 @@ def get_time_series_aggregations(df: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     """
     Compute daily, monthly, day-of-week, and hourly aggregations.
     """
-    df = df.copy()
-    if not np.issubdtype(df["InvoiceDate"].dtype, np.datetime64):
-        df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
-
-    df["Date"] = df["InvoiceDate"].dt.date
-    df["YearMonth"] = df["InvoiceDate"].dt.to_period("M").astype(str)
-    df["DayOfWeek"] = df["InvoiceDate"].dt.day_name()
-    df["Hour"] = df["InvoiceDate"].dt.hour
+    missing_cols = [c for c in ["Date", "YearMonth", "DayOfWeek", "Hour"] if c not in df.columns]
+    if missing_cols:
+        df = df.copy()
+        if not np.issubdtype(df["InvoiceDate"].dtype, np.datetime64):
+            df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
+        if "Date" not in df.columns:
+            df["Date"] = df["InvoiceDate"].dt.date
+        if "YearMonth" not in df.columns:
+            df["YearMonth"] = df["InvoiceDate"].dt.strftime("%Y-%m")
+        if "DayOfWeek" not in df.columns:
+            df["DayOfWeek"] = df["InvoiceDate"].dt.day_name()
+        if "Hour" not in df.columns:
+            df["Hour"] = df["InvoiceDate"].dt.hour
 
     daily = df.groupby("Date").agg(
         Revenue=("Revenue", "sum"),

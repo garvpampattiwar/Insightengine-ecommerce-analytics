@@ -101,12 +101,15 @@ def load_raw_data(data_path: Optional[str] = None) -> pd.DataFrame:
 def load_cleaned_data(data_path: Optional[str] = None) -> pd.DataFrame:
     """
     Load cleaned and preprocessed e-commerce dataset from data/processed/.
+    Prioritizes ultra-fast parquet format if available, falling back to CSV.
     """
     root = get_project_root()
     if data_path:
         path = Path(data_path)
     else:
-        path = root / "data" / "processed" / "cleaned_ecommerce.csv"
+        parquet_candidate = root / "data" / "processed" / "cleaned_ecommerce.parquet"
+        csv_candidate = root / "data" / "processed" / "cleaned_ecommerce.csv"
+        path = parquet_candidate if parquet_candidate.exists() else csv_candidate
 
     if not path.exists():
         raise FileNotFoundError(
@@ -114,17 +117,20 @@ def load_cleaned_data(data_path: Optional[str] = None) -> pd.DataFrame:
             f"Please run the data cleaning pipeline: python -m src.data.cleaning or run notebooks/01_data_cleaning.ipynb."
         )
 
-    df = pd.read_csv(
-        path,
-        dtype={
-            "InvoiceNo": str,
-            "StockCode": str,
-            "Description": str,
-            "CustomerID": int,
-            "Country": str,
-        },
-        parse_dates=["InvoiceDate"],
-    )
+    if str(path).endswith(".parquet"):
+        df = pd.read_parquet(path)
+    else:
+        df = pd.read_csv(
+            path,
+            dtype={
+                "InvoiceNo": str,
+                "StockCode": str,
+                "Description": str,
+                "CustomerID": int,
+                "Country": str,
+            },
+            parse_dates=["InvoiceDate"],
+        )
 
     is_valid, missing = validate_cleaned_schema(df)
     if not is_valid:

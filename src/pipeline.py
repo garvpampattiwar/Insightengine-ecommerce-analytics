@@ -21,6 +21,7 @@ from src.models.churn import train_churn_models
 from src.models.recommender import CollaborativeRecommender
 from src.analytics.statistics import simulate_marketing_ab_test
 from src.analytics.business_insights import generate_executive_insights
+from src.analytics.precompute import precompute_dashboard_aggregates
 
 
 def run_pipeline():
@@ -77,6 +78,7 @@ def run_pipeline():
     print(f"p-value: {ab_results['t_test']['p_value']:.4e} | Cohen's d: {ab_results['effect_size_cohens_d']}")
 
     insights = generate_executive_insights(df, segmented_df=clustered_rfm, churn_df=churn_results["scored_df"])
+    precompute_dashboard_aggregates(df, save=True)
     
     # Save pipeline summary
     summary_path = root_dir / "reports" / "pipeline_run_summary.json"

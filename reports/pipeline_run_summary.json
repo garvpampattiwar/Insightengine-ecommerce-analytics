@@ -20,7 +20,7 @@
       "RecommendedAction": "Nurturing email flows, limited-time trial discounts on related categories, low-friction checkout reminders."
     },
     {
-      "Cluster": 1,
+      "Cluster": 1,     
       "SegmentName": "At Risk / Hibernating",
       "CustomerCount": 1636,
       "AvgRecency": 183.1,
@@ -118,9 +118,9 @@
   "best_churn_model": "random_forest",
   "recommender_coverage": {
     "users_evaluated": 300,
-    "unique_items_recommended": 963,
+    "unique_items_recommended": 346,
     "active_catalog_items": 3182,
-    "catalog_coverage_pct": 30.26
+    "catalog_coverage_pct": 10.87
   },
   "ab_test": {
     "difference_in_means": 30.0,
